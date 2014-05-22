@@ -15,10 +15,16 @@ func TestSource(t *testing.T) {
 }
 
 func TestNewSource(t *testing.T) {
-	b := bytes.NewBuffer(make([]byte, 8))
+	b := bytes.NewReader(make([]byte, 8))
 	s := cryptorand.NewSource(b)
 	if s.Int63() != 0 {
 		t.Error("Expected Int63() to be 0 with custom io.Reader")
+	}
+
+	b = bytes.NewReader([]byte{0x7f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff})
+	s = cryptorand.NewSource(b)
+	if s.Int63() != 1<<63-1 {
+		t.Error("Expected Int63() to be max with custom io.Reader")
 	}
 }
 
