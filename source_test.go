@@ -1,6 +1,7 @@
 package cryptorand_test
 
 import (
+	"bytes"
 	"testing"
 
 	"github.com/wadey/cryptorand"
@@ -10,6 +11,14 @@ func TestSource(t *testing.T) {
 	s := cryptorand.Source
 	if s.Int63() == s.Int63() {
 		t.Error("Expected Int63() to be random")
+	}
+}
+
+func TestNewSource(t *testing.T) {
+	b := bytes.NewBuffer(make([]byte, 8))
+	s := cryptorand.NewSource(b)
+	if s.Int63() != 0 {
+		t.Error("Expected Int63() to be 0 with custom io.Reader")
 	}
 }
 

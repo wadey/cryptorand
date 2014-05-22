@@ -4,24 +4,30 @@ package cryptorand
 import (
 	crand "crypto/rand"
 	"fmt"
+	"io"
 	"math/big"
 	"math/rand"
 )
 
-var maxInt63 = new(big.Int).SetUint64(1 << 63)
+type source struct{ io.Reader }
 
-type source struct{}
+var maxInt63 = new(big.Int).SetUint64(1 << 63)
 
 // Source is a math/rand.Source backed by crypto/rand.
 // Calling Seed() will result in a panic.
 var Source rand.Source
 
-func init() {
-	Source = source{}
+// NewSource returns a new rand.Source backed by the given random source.
+func NewSource(rand io.Reader) rand.Source {
+	return source{rand}
 }
 
-func (source) Int63() int64 {
-	i, err := crand.Int(crand.Reader, maxInt63)
+func init() {
+	Source = NewSource(crand.Reader)
+}
+
+func (s source) Int63() int64 {
+	i, err := crand.Int(s, maxInt63)
 	if err != nil {
 		panic(fmt.Errorf("crypto/rand.Int returned error: %v", err))
 	}
