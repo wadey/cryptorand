@@ -8,7 +8,9 @@ import (
 
 func TestSource(t *testing.T) {
 	s := cryptorand.Source()
-	t.Logf("Int63(): %v", s.Int63())
+	if s.Int63() == s.Int63() {
+		t.Error("Expected Int63() to be random")
+	}
 }
 
 func TestSeedPanics(t *testing.T) {
