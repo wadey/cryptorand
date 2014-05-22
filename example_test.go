@@ -8,7 +8,7 @@ import (
 )
 
 func Example() {
-	r := rand.New(cryptorand.Source())
+	r := rand.New(cryptorand.Source)
 	fmt.Println(r.Float64() == r.Float64())
 
 	// Output:

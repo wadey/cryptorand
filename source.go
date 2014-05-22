@@ -12,11 +12,9 @@ var max63 = new(big.Int).SetUint64(1 << 63)
 
 type source struct{}
 
-// Source returns a math/rand.Source backed by crypto/rand.
+// Source is a math/rand.Source backed by crypto/rand.
 // Calling Seed() will result in a panic.
-func Source() mathrand.Source {
-	return source{}
-}
+var Source mathrand.Source = source{}
 
 func (source) Int63() int64 {
 	i, err := rand.Int(rand.Reader, max63)
