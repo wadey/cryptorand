@@ -8,7 +8,7 @@ import (
 	"math/rand"
 )
 
-var max63 = new(big.Int).SetUint64(1 << 63)
+var maxInt63 = new(big.Int).SetUint64(1 << 63)
 
 type source struct{}
 
@@ -21,7 +21,7 @@ func init() {
 }
 
 func (source) Int63() int64 {
-	i, err := crand.Int(crand.Reader, max63)
+	i, err := crand.Int(crand.Reader, maxInt63)
 	if err != nil {
 		panic(fmt.Errorf("crypto/rand.Int returned error: %v", err))
 	}
