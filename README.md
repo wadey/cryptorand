@@ -11,4 +11,5 @@ Package cryptorand provides a math/rand.Source implementation of crypto/rand
 ```go
 func Source() mathrand.Source
 ```
-Source returns a math/rand.Source backed by crypto/rand
+Source returns a math/rand.Source backed by crypto/rand. Calling Seed() will
+result in a panic.
