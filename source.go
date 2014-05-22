@@ -18,6 +18,7 @@ var maxInt63 = new(big.Int).SetUint64(1 << 63)
 var Source rand.Source
 
 // NewSource returns a new rand.Source backed by the given random source.
+// Calling Seed() will result in a panic.
 func NewSource(rand io.Reader) rand.Source {
 	return source{rand}
 }

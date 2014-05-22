@@ -17,4 +17,5 @@ in a panic.
 ```go
 func NewSource(rand io.Reader) rand.Source
 ```
-NewSource returns a new rand.Source backed by the given random source.
+NewSource returns a new rand.Source backed by the given random source. Calling
+Seed() will result in a panic.
