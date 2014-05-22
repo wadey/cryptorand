@@ -4,6 +4,16 @@
 
 Package cryptorand provides a math/rand.Source implementation of crypto/rand
 
+## Example
+
+```go
+r := rand.New(cryptorand.Source)
+fmt.Println(r.Float64() == r.Float64())
+
+// Output:
+// false
+```
+
 ## Usage
 
 ```go
