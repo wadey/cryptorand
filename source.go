@@ -1,4 +1,4 @@
-// Package cryptorand provides a math/rand.Source implementation of crypto/rand
+// Package cryptorand provides a math/rand.Source64 implementation of crypto/rand
 package cryptorand
 
 import (
