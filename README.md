@@ -2,7 +2,7 @@
 --
     import "github.com/wadey/cryptorand"
 
-Package cryptorand provides a math/rand.Source implementation of crypto/rand
+Package cryptorand provides a math/rand.Source64 implementation of crypto/rand
 
 ## Example
 
@@ -19,7 +19,7 @@ fmt.Println(r.Float64() == r.Float64())
 ```go
 var Source rand.Source
 ```
-Source is a math/rand.Source backed by crypto/rand. Calling Seed() will result
+Source is a math/rand.Source64 backed by crypto/rand. Calling Seed() will result
 in a panic.
 
 #### func  NewSource
@@ -27,5 +27,5 @@ in a panic.
 ```go
 func NewSource(rand io.Reader) rand.Source
 ```
-NewSource returns a new rand.Source backed by the given random source. Calling
+NewSource returns a new rand.Source64 backed by the given random source. Calling
 Seed() will result in a panic.

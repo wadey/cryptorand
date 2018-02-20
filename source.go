@@ -15,11 +15,11 @@ type source struct{ io.Reader }
 var maxInt63 = new(big.Int).SetUint64(1 << 63)
 var maxUint64 = new(big.Int).Add(new(big.Int).SetUint64(math.MaxUint64), new(big.Int).SetInt64(1))
 
-// Source is a math/rand.Source backed by crypto/rand.
+// Source is a math/rand.Source64 backed by crypto/rand.
 // Calling Seed() will result in a panic.
 var Source rand.Source
 
-// NewSource returns a new rand.Source backed by the given random source.
+// NewSource returns a new rand.Source64 backed by the given random source.
 // Calling Seed() will result in a panic.
 func NewSource(rand io.Reader) rand.Source {
 	return source{rand}
